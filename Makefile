@@ -1,19 +1,20 @@
 include config.mk
 
-SRC = demoscene.c
+SRC = gldemo.c
 OBJ = ${SRC:.c=.o}
+TARG = ${SRC:.c=}
 
-all: demoscene
+all: ${TARG}
 
 .c.o:
 	${CC} -c ${CFLAGS} $<
 
 ${OBJ}: config.mk
 
-demoscene: ${OBJ}
+${TARG}: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
 
 clean:
-	rm -f demoscene ${OBJ}
+	rm -f ${TARG} ${OBJ}
 
 .PHONY: all clean
